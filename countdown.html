@@ -2,7 +2,7 @@
 <html>
 <head>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Roboto:900');
+@import url('https://fonts.googleapis.com/css?family=Roboto:900,700,500,400,300');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 @import url('https://fonts.googleapis.com/css?family=Oxygen');
 
@@ -33,57 +33,56 @@ p {
 </head>
 <body>
 
-<h1>Real Demand</h1>
+<h1>RealDemand</h1>
 <p id="timer"></p>
-<h2 id="tag"> Until β Launch</h2>
-
+<h2 id="tag"> Until βeta Launch</h2>
 <script>
 
-// Set the date we're counting down to
-var countDownDate = new Date("Mar 19, 2017 11:59:59").getTime();
+var countDownDate = new Date("Mar 19, 2017 23:59:59");
 
-// Update the count down every 1 second
 var x = setInterval(function() {
 
-    // Get todays date and time
     var now = new Date();
-    // var now = new Date("Mar 06, 2017 00:00:00").getTime()
     // console.log(Date(now));
 
-
-    // Find the distance between now an the count down date
     var distance = countDownDate - now;
-
     var day = new Date().getDay();
-
-    // Time calculations for days, hours, minutes and seconds
     var days = Math.floor(distance / (1000 * 60 * 60 * 24));
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     var weeks = Math.round(days/7)
+
+    // console.log(day);
+
     if (weeks > 1) {
         days = days - (weeks * 2);
+        if(day < 6){
+          days = days + 2
+        }
     }
-    // Output the result in an element with id="timer"
+
     document.getElementById("timer").innerHTML = days + "d" + hours + "h"
     + minutes + "m" + seconds + "s";
 
-    if (days < 5){
+    if (days <= 5){
         document.getElementById("timer").style.color = "#F76861";
+         document.getElementById("tag").innerHTML = "Until βeta Launch ‼️";
     } else {
       document.getElementById("timer").style.color = "#47B191";
     }
-
+    if (day >= 6) {
+        document.getElementById("timer").innerHTML = "It's a Weekend";
+        // console.log(days)
+    }
     if (distance < 0) {
         clearInterval(x);
-        document.getElementById("timer").innerHTML = "CONGRATS, IT'S BETA DAY! THANKS ALLAN, DAN, DAMIEN, MATT, YIFAN, JUNKERS, MICHAEL, FUZZ, ATRIDGE, ANDY, SCOTTY, MIKE, & MURPHY";
+        document.getElementById("timer").innerHTML = "CONGRATS, IT'S βETA DAY! THANKS ALLAN, DAN, DAMIEN, MATT, YIFAN, JUNKERS, MIKE M (& MURPHY), FUZZ, ATRIDGE, ANDY, SCOTTY, MIKE G";
         document.getElementById("timer").style.fontSize = "100px";
-        document.getElementById("tag").innerHTML = "Beta Launch* ACTUAL LAUNCH COUNTDOWN WILL COMMENCE SHORTLY";
+        document.getElementById("tag").innerHTML = "ACTUAL LAUNCH COUNTDOWN WILL COMMENCE SHORTLY";
 
     }
 }, 1000);
 </script>
-
 </body>
 </html>
